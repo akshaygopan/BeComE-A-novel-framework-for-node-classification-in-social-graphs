@@ -1,8 +1,14 @@
 from sklearn import svm
 from sklearn.metrics import accuracy_score, f1_score, precision_recall_fscore_support
 from sklearn.metrics import confusion_matrix
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 import numpy as np
 import pandas as pd
+ 
+
 
 class Evaluate:
 
@@ -24,6 +30,46 @@ class Evaluate:
         labels = y_test
 
         return preds, labels
+    
+    def trainAndPredict_LogisticRegression(X_train, X_test, y_train, y_test):
+        clf = LogisticRegression(max_iter=1000)
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        accuracy = clf.score(X_test, y_test)
+        print("Logistic Regression Accuracy:", accuracy)
+        return y_pred, y_test
+    
+    def trainAndPredict_RandomForest(X_train, X_test, y_train, y_test):
+        clf = RandomForestClassifier(n_estimators=100)
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        accuracy = clf.score(X_test, y_test)
+        print("Random Forest Accuracy:", accuracy)
+        return y_pred, y_test
+    
+    def trainAndPredict_KNeighbors(X_train, X_test, y_train, y_test):
+        clf = KNeighborsClassifier(n_neighbors=5)
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        accuracy = clf.score(X_test, y_test)
+        print("K-Neighbors Accuracy:", accuracy)
+        return y_pred, y_test
+    
+    def trainAndPredict_DecisionTree(X_train, X_test, y_train, y_test):
+        clf = DecisionTreeClassifier()
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        accuracy = clf.score(X_test, y_test)
+        print("Decision Tree Accuracy:", accuracy)
+        return y_pred, y_test
+    
+    def trainAndPredict_GradientBoosting(X_train, X_test, y_train, y_test):
+        clf = GradientBoostingClassifier()
+        clf.fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        accuracy = clf.score(X_test, y_test)
+        print("Gradient Boosting Accuracy:", accuracy)
+        return y_pred, y_test
     
 
     def calculate_tpr_fpr(self, y_real, y_pred):
