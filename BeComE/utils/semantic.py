@@ -23,6 +23,18 @@ class Semantic:
         model = SentenceTransformer(model_name)
         return model
     
+    def getTextData_noLabels(self, data, label_col):
+ 
+        datasets = {'cora': 'Akshayxx/CoraDatasetV6_Two', 'citeseer' :'Akshayxx/citeseerV1'}
+ 
+        dataset = load_dataset(datasets[data])
+ 
+        text_df_test = dataset['validation'].to_pandas()
+        text_df_train = dataset['train'].to_pandas()
+        #text_df_train['text'] = text_df_train.apply(lambda x: self.introduceLabelAwareness(x['text'], x[label_col]), axis = 1)
+ 
+        return text_df_train, text_df_test
+    
     def getTextEmbeddings(self, text_df_train, text_df_test, text_col = 'text', model_name = 'bert-base-nli-mean-tokens'):
 
         model = self.getTextModel(model_name)

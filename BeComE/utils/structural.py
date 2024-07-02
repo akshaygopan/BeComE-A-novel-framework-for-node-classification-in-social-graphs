@@ -81,6 +81,24 @@ class Structural:
 
         return node_embeddings_train, node_embeddings_test
     
+    def getStructuralEmbeddings_noLabels(self, text_df_train, text_df_test, edges, label_col):
+ 
+        df = pd.concat([text_df_train, text_df_test])
+        present = df.node_id.unique()
+        edges = edges[(edges['dest_id'].isin(present)) | (edges['source_id'].isin(present))]
+        edges_list = []
+        relation = 1
+        for row in range(len(edges)):
+            source = edges.iloc[row]['source_id']
+            dest = edges.iloc[row]['dest_id']
+            edge = [source, relation, dest]
+            edges_list.append(edge)
+ 
+        embeds_model = self.getStructualEmbeddingModel(edges_list)
+        node_embeddings_train = embeds_model.get_embeddings(text_df_train['node_id'].values, embedding_type='entity')
+        node_embeddings_test = embeds_model.get_embeddings(text_df_test['node_id'].values, embedding_type='entity')
+ 
+        return node_embeddings_train, node_embeddings_test
 
     def getStructualEmbeddingModel(self, edges_list):
 
