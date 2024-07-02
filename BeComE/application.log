@@ -1,2 +1,5 @@
 INFO - Use pytorch device_name: cpu
 INFO - Load pretrained SentenceTransformer: bert-base-nli-mean-tokens
+INFO - Use pytorch device_name: mps
+INFO - Load pretrained SentenceTransformer: bert-base-nli-mean-tokens
+WARNING - At this time, the v2.11+ optimizer `tf.keras.optimizers.Adam` runs slowly on M1/M2 Macs, please use the legacy TF-Keras optimizer instead, located at `tf.keras.optimizers.legacy.Adam`.

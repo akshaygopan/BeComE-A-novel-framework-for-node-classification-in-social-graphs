@@ -6,7 +6,7 @@ class Structural:
 
     def getCiteSeerEdges(self):
 
-        file_path= 'data\CiteSeer_original.cites'
+        file_path= './data/CiteSeer_original.cites'
 
         with open(file_path, 'r') as file:
                 lines = file.readlines()
@@ -29,7 +29,7 @@ class Structural:
     
     def getCoraEdges(self):
 
-        edges = pd.read_csv('data\df_cln2.csv')
+        edges = pd.read_csv('./data/df_cln2.csv')
         return edges
     
     def getStructuralEmbeddings(self, text_df_train, text_df_test, edges, label_col):
