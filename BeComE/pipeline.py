@@ -44,9 +44,9 @@ class Pipeline:
             edges = st.getCiteSeerEdges()
  
        
-        node_embeddings_train, node_embeddings_test = st.getStructuralEmbeddings(text_df_train, text_df_test, edges, label_col = label_col[data])
+        node_embeddings_train, node_embeddings_test = st.getStructuralEmbeddings_noLabels(text_df_train, text_df_test, edges, label_col = label_col[data])
         labels_train, labels_test = Concat.getLabels(text_df_train, text_df_test, col = label_col[data])
-        X_train, y_train, X_test, y_test = Concat.concatStructualEmbeddings(node_embeddings_train, labels_train, node_embeddings_test, labels_test)
+        X_train, y_train, X_test, y_test = Concat.getCombinedEmbeddings(node_embeddings_train, labels_train, node_embeddings_test, labels_test)
         preds, labels = Evaluate.trainAndPredict(X_train, X_test, y_train, y_test)
         name = data + 'ComplEx + SVM'
         results = Evaluate.getResults(preds, labels, len(y_train.unique()), results, name)
