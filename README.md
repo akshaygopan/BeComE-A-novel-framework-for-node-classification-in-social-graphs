@@ -28,5 +28,5 @@ Arguments to the Pipeline.pipeline function:
 1. data: Available datasets are ['cora', 'citeseer']. The input datatype is a list.
 
 Architecture:
-![Model Architecture](https://github.com/akshaygopan/BeComE-A-novel-framework-for-node-classification-in-social-graphs/blob/main/architecture.jpg?raw=true)
+![Model Architecture](https://github.com/akshaygopan/BeComE-A-novel-framework-for-node-classification-in-social-graphs/blob/main/architecture.png?raw=true)
    
