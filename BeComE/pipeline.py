@@ -24,7 +24,7 @@ class Pipeline:
         labels_train, labels_test = Concat.getLabels(text_df_train, text_df_test, col = label_col[data])
         X_train, y_train, X_test, y_test = Concat.getCombinedEmbeddings(text_vecs_train, node_embeddings_train, labels_train, text_vecs_test, node_embeddings_test, labels_test)
         preds, labels = Evaluate.trainAndPredict(X_train, X_test, y_train, y_test)
-        name = data + 'BERT + ComplEx + SVM'
+        name = data + ' BERT + ComplEx + SVM'
         results = Evaluate.getResults(preds, labels, len(y_train.unique()), results, name)
 
         return results
@@ -48,7 +48,7 @@ class Pipeline:
         labels_train, labels_test = Concat.getLabels(text_df_train, text_df_test, col = label_col[data])
         X_train, y_train, X_test, y_test = Concat.getCombinedEmbeddings(node_embeddings_train, labels_train, node_embeddings_test, labels_test)
         preds, labels = Evaluate.trainAndPredict(X_train, X_test, y_train, y_test)
-        name = data + 'ComplEx + SVM'
+        name = data + ' ComplEx + SVM'
         results = Evaluate.getResults(preds, labels, len(y_train.unique()), results, name)
  
         return results
@@ -64,7 +64,7 @@ class Pipeline:
         labels_train, labels_test = Concat.getLabels(text_df_train, text_df_test, col = label_col[data])
         X_train, y_train, X_test, y_test = Concat.concatSemanticEmbeddings(text_vecs_train, labels_train, text_vecs_test, labels_test)
         preds, labels = Evaluate.trainAndPredict(X_train, X_test, y_train, y_test)
-        name = data + 'BERT + SVM'
+        name = data + ' BERT + SVM'
         results = Evaluate.getResults(preds, labels, len(y_train.unique()), results, name)
  
         return results
@@ -88,7 +88,7 @@ class Pipeline:
         labels_train, labels_test = Concat.getLabels(text_df_train, text_df_test, col = label_col[data])
         X_train, y_train, X_test, y_test = Concat.getCombinedEmbeddings(text_vecs_train, node_embeddings_train, labels_train, text_vecs_test, node_embeddings_test, labels_test)
         preds, labels = Evaluate.trainAndPredict(X_train, X_test, y_train, y_test)
-        name = data + 'BERT + ComplEx + SVM'
+        name = data + ' BERT + ComplEx + SVM + labels removed'
         results = Evaluate.getResults(preds, labels, len(y_train.unique()), results, name)
  
         return results
@@ -122,7 +122,7 @@ class Pipeline:
 
         for i in models.keys():
             preds, labels = models[i](X_train, X_test, y_train, y_test)
-            name = data + 'BERT + ComplEx + ' + i
+            name = data + ' BERT + ComplEx + ' + i
             results = Evaluate.getResults(preds, labels, len(y_train.unique()), results, name)
 
         return results
